@@ -1,0 +1,8 @@
+﻿Name,Country,City,Date In,Date Out,Duration,Price,Avg Price,Company,Include,IncludePrice,Longitude,Latitude,Method,Route
+Avoca,India,McLeod Ganj,4/4/2023,4/6/2023,2,$17.00 ,$8.50 ,Booking,Yes,Yes,32.2352666,76.326238,Flight,1
+Triund Camp,India,Triund,4/6/2023,4/7/2023,1,$25.00 ,$25.00 ,Self,Yes,Yes,32.26078693,76.35678258,Flight,1
+Triund View Homestay,India,Bhagsu,4/7/2023,4/9/2023,2,$24.00 ,$12.00 ,Booking,Yes,Yes,32.243964,76.3334748,Bus,1
+Madpackers McLeodGanj,India,Dharamkot,4/9/2023,4/12/2023,3,$35.00 ,$11.67 ,Booking,Yes,Yes,32.2455318,76.3259971,Bus,1
+Sparrow House,India,"Bir,Himachal Pradesh",4/12/2023,4/16/2023,4,$39.00 ,$9.75 ,Booking,Yes,Yes,32.0445234,76.7255115,Bus,1
+Shimla Vibes,India,Shimla,4/16/2023,4/17/2023,1,$9.00 ,$9.00 ,Booking,Yes,Yes,31.1041526,77.1709729,Bus,1
+Himalayan Orchard,India,Rukhla,4/17/2023,4/27/2023,10,$0.00 ,$0.00 ,Workaway,Yes,No,31.15351818,77.52479483,Bus,1
