@@ -1,10 +1,209 @@
 body{
     background-color: black;
+    overflow: hidden;
+    margin:0px;
+    padding:0px;
 }
 
 #map { 
-    margin-left:auto;
-    margin-right:auto;
-    width: 500px;
-    height:500px; 
+    margin-left:0;
+    margin-right:0;
+    width: 100vw;
+    height:100vh; 
     }
+img.huechange{
+    filter: brightness(0) invert(1);
+}
+
+.Selected_line{
+    stroke-width: 1.2px!important;
+    animation: mymove 1s infinite;
+}
+@keyframes mymove {
+    0% {
+        filter: drop-shadow(0 0 0px #ffffff00)drop-shadow( 0 0 0px #ffffff00);
+    }
+    25% {
+        filter: drop-shadow(0 0 5px #ffe600)drop-shadow( 0 0 10px #ff2600);
+    }
+    50%{
+        filter: drop-shadow(0 0 10px #fff)drop-shadow( 0 0 20px #fff);
+    }
+    75% {
+        filter: drop-shadow(0 0 5px #ffe600)drop-shadow( 0 0 10px #ff2600);
+    }
+    100%{
+        filter: drop-shadow(0 0 0px #ffffff00)drop-shadow( 0 0 0px #ffffff00);
+    }
+}
+
+.Train_line{
+    stroke: red;
+    stroke-width: 0.9px;
+    filter: drop-shadow(3px 2px 2px rgb(255, 0, 0));
+    
+
+}
+.Bike_line{
+    stroke:#fd9533;
+    stroke-width: 0.9px;
+    filter: drop-shadow(0px 0px 5px rgb(255, 206, 73));
+
+}
+.Flight_line{
+    stroke:#ff79bc;
+    stroke-width: 0.9px;
+    filter: drop-shadow(3px 5px 2px rgb(90, 0, 83));
+
+}
+.Bus_line{
+    stroke:#7c9bff;
+    stroke-width: 0.9px;
+    filter: drop-shadow(3px 5px 2px rgb(160, 190, 255));
+
+}
+.Taxi_line{
+    stroke:#379fee;
+    stroke-width: 0.9px;
+    filter: drop-shadow(3px 5px 2px rgba(0, 47, 255, 0.4));
+
+}
+.Other_line{
+    stroke:pink;
+    stroke-width: 0.9px;
+    filter: drop-shadow(3px 5px 2px rgba(255, 255, 255, 0.4));
+
+}
+
+
+
+    .fa-2x {
+        font-size: 4em;
+        }
+        .fa {
+        position: relative;
+        display: table-cell;
+        width: 60px;
+        height: 36px;
+        text-align: center;
+        vertical-align: middle;
+        font-size:20px;
+        }
+        
+        
+        .main-menu:hover,nav.main-menu.expanded {
+        width:250px;
+        overflow:visible;
+        }
+        
+        .main-menu {
+        background:#000000d3;
+        border-left:1px solid #e5e5e5;
+        position:absolute;
+        top:0;
+        bottom:0;
+        height:100%;
+        right:0;
+        width:60px;
+        overflow:hidden;
+        -webkit-transition:width .05s linear;
+        transition:width .05s linear;
+        z-index:1000;
+        overflow:hidden;
+        }
+        
+        .main-menu ul {
+        margin:0px;
+        }
+        
+        .main-menu li {
+        width:250px;
+        border-spacing:0;
+        color:#ffffff;
+        font-family: arial;
+        font-size: 0.8em;
+        padding:10px;
+        text-decoration:none;
+        -webkit-transform:translateZ(0) scale(1,1);
+        -webkit-transition:all .1s linear;
+        transition:all .1s linear;
+        }
+
+        .main-menu h1{
+            font-size: 1.2em;
+            color:#ffffff;
+            font-family: arial;
+            width:250px;
+            padding:10px;
+
+
+
+        }
+        
+        .main-menu .nav-icon {
+        position:relative;
+        display:table-cell;
+        width:60px;
+        height:36px;
+        text-align:center;
+        vertical-align:middle;
+        font-size:18px;
+        }
+        
+        .main-menu .nav-text {
+        position:relative;
+        display:table-cell;
+        vertical-align:middle;
+        width:190px;
+          font-family: 'Titillium Web', sans-serif;
+        }
+        
+        .main-menu>ul.logout {
+        position:absolute;
+        left:0;
+        bottom:0;
+        }
+        
+        .no-touch .scrollable.hover {
+        overflow-y:hidden;
+        }
+        
+        .no-touch .scrollable.hover:hover {
+        overflow-y:auto;
+        overflow:visible;
+        }
+        
+        a:hover,a:focus {
+        text-decoration:none;
+        }
+        
+        nav {
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        -o-user-select:none;
+        user-select:none;
+        }
+        
+        nav ul,nav li {
+        outline:0;
+        margin:0;
+        padding:0;
+        list-style-type: none;
+        }
+        .main-menu li:hover{
+        color:#ffffff;
+        background-color:#4b4b4b;
+        cursor:pointer;
+        }
+        .area {
+        float: left;
+        background: #ffffff;
+        width: 100%;
+        height: 100%;
+        }
+
+.clickedItem{
+    color:#000000!important;
+    background-color:#ffffff!important;
+}
