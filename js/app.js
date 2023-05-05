@@ -4,40 +4,72 @@ let map = L.map('map').setView([-6, 106], 6);
 
 let mapMarker = L.icon({
     iconUrl: '../images/Map_marker.svg',
-    iconSize:     [20, 20], // size of the icon
-    iconAnchor:   [10, 19], // point of the icon which will correspond to marker's location
+    iconSize:     [10, 10], // size of the icon
+    iconAnchor:   [5, 9], // point of the icon which will correspond to marker's location
     shadowAnchor: [4, 62],  // the same for the shadow
     popupAnchor:  [0, -20] // point from which the popup should open relative to the iconAnchor
 });
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+var Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+	maxZoom: 20,
+	attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-var marker = L.marker([-6.175247, 106.8270488],{icon: mapMarker}).addTo(map).bindPopup("<b>TESTTESTTEST</b>")
 let prev = null
 let travelDistances = {"Flight":0,"Train":0,"Bus":0,"Taxi":0,"Bike":0,"Other":0,"Total":0}
+
+function display_distance(){
+    let total = document.getElementById("ti_total")
+    let bike = document.getElementById("ti_bike")
+    let train = document.getElementById("ti_train")
+    let flight = document.getElementById("ti_flight")
+    let bus = document.getElementById("ti_bus")
+    let taxi = document.getElementById("ti_taxi")
+    let other = document.getElementById("ti_other")
+
+    total.innerHTML = "Total Distance: "+String(Math.round(travelDistances["Total"]/1000))+" km"
+    bike.innerHTML = "Bike Distance: "+String(Math.round(travelDistances["Bike"]/1000))+" km"
+    train.innerHTML = "Train Distance: "+String(Math.round(travelDistances["Train"]/1000))+" km"
+    flight.innerHTML = "Flight Distance: "+String(Math.round(travelDistances["Flight"]/1000))+" km"
+    bus.innerHTML = "Bus Distance: "+String(Math.round(travelDistances["Bus"]/1000))+" km"
+    taxi.innerHTML = "Taxi Distance: "+String(Math.round(travelDistances["Taxi"]/1000))+" km"
+    other.innerHTML = "Other Distance: "+String(Math.round(travelDistances["Other"]/1000))+" km"
+
+    let bike_lines = document.getElementsByClassName("Bike_line")
+    let train_lines = document.getElementsByClassName("Train_line")
+    let flight_lines = document.getElementsByClassName("Flight_line")
+    let bus_lines = document.getElementsByClassName("Bus_line")
+    let taxi_lines = document.getElementsByClassName("Taxi_line")
+    let other_lines = document.getElementsByClassName("Other_line")
+
+    let arr1 = [bike,train,flight,bus,taxi,other]
+    let arr2 = [bike_lines,train_lines,flight_lines,bus_lines,taxi_lines,other_lines]
+    for (let i = 0;i<arr1.length;i++){
+        console.log(arr1[i])
+        arr1[i].addEventListener("click",()=>{
+            arr1[i].classList.toggle("clickedItem")
+            for (let item of arr2[i]) {
+                console.log(item)
+                item.classList.toggle("Selected_line")     
+            }
+        })
+    }
+    /*
+    bike.addEventListener("mousedown",()=>{
+        console.log("Clicked Bike")
+        bike.classList.toggle("clickedItem")
+        
+    })*/
+    
+}
 data.forEach(item => {
     if(item["Latitude"]!=0 & item["Latitude"]!=0){
     console.log(item["Name"],item["Longitude"],item["Latitude"])
     var marker = L.marker([item["Longitude"], item["Latitude"]],{icon: mapMarker}).addTo(map)
+    marker._icon.classList.add("huechange");
     if(prev!=null){
         let backup = true
-        let color = 'black'
-        switch(prev["Method"]){
-            case "Bike":
-                color = 'green'
-                break;
-            case "Taxi":
-                color = 'yellow'
-                break;
-            case "Train":
-                color = 'red'
-                break;
-            case "Bus":
-                color = 'blue'
-                break;}
+        
         if(prev["Method"] !="Flight" && item["Route"]!=0 &&item["Route"]!={}){
             //console.log(item["Route"])
             let pathjson=JSON.parse(item["Route"])
@@ -48,7 +80,9 @@ data.forEach(item => {
                 let distance = pathjson["route"]["distance"]
                 travelDistances[prev["Method"]]+=distance
                 travelDistances["Total"]+=distance
-                let polyline = L.polyline(latlngs, {color: color}).addTo(map);
+                let polyline = L.polyline(latlngs, {
+                    className:prev["Method"]+"_line",
+                }).addTo(map);
             }
         }
         if(backup){
@@ -59,19 +93,18 @@ data.forEach(item => {
                 travelDistances["Total"]+=distance
             let pointList = [pointB,pointA]
             let firstpolyline = new L.Polyline(pointList, {
-                color: color,
-                weight: 3,
-                opacity: 0.5,
-                smoothFactor: 1
+                className:prev["Method"]+"_line",
             });
             firstpolyline.addTo(map);
+            
         }
     }
-    
     prev={"Method":item["Method"],"Point":[item["Longitude"],item["Latitude"]]}
     marker.bindPopup("<b>"+item["Name"]+item["Longitude"]+"<br>"+item["Latitude"]+"</b>")
 }
 })
+display_distance()
+
 console.log(travelDistances)
 
 
