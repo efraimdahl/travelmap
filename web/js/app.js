@@ -1,5 +1,5 @@
 import data from './data.js';
-
+import states1 from './border_states.js';
 let map = L.map('map').setView([-6, 106], 6);
 
 let mapMarker = L.icon({
@@ -62,6 +62,22 @@ function display_distance(){
     })*/
     
 }
+
+function getColor(d) {
+    return '#FFEDA0';
+}
+
+function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.name),
+        weight: 0.1,
+        opacity: 1,
+        color: 'white',
+        fillOpacity: 0.2
+    };
+}
+
+L.geoJson(states1, {style: style}).addTo(map);
 data.forEach(item => {
     if(item["Latitude"]!=0 & item["Latitude"]!=0){
     console.log(item["Name"],item["Longitude"],item["Latitude"])
@@ -100,7 +116,15 @@ data.forEach(item => {
         }
     }
     prev={"Method":item["Method"],"Point":[item["Longitude"],item["Latitude"]]}
-    marker.bindPopup("<b>"+item["Name"]+item["Longitude"]+"<br>"+item["Latitude"]+"</b>")
+    if(item["Name"]!="Travel Point"){
+        let popup_content = `<b class=popup_title>${item["City"]}, ${item["Country"]}</b><br> 
+        ${item["Name"]}<br> Duration: ${item["Duration"]} Days`
+        if(item["Link"]!=0){
+            popup_content = `<a href=${item["Link"]} class="popup_title"><b>${item["City"]}, ${item["Country"]}</b></a><br> 
+        ${item["Name"]}<br> Duration: ${item["Duration"]} Days`
+        }
+        marker.bindPopup(popup_content)
+    }
 }
 })
 display_distance()
