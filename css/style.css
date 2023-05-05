@@ -4,7 +4,6 @@ body{
     margin:0px;
     padding:0px;
 }
-
 #map { 
     margin-left:0;
     margin-right:0;
@@ -36,42 +35,41 @@ img.huechange{
         filter: drop-shadow(0 0 0px #ffffff00)drop-shadow( 0 0 0px #ffffff00);
     }
 }
-
 .Train_line{
-    stroke: red;
+    stroke: #ff6f4b;
     stroke-width: 0.9px;
-    filter: drop-shadow(3px 2px 2px rgb(255, 0, 0));
+    filter: drop-shadow(3px 2px 2px #ff6f4b);
     
 
 }
 .Bike_line{
-    stroke:#fd9533;
+    stroke:#fd4c55;
     stroke-width: 0.9px;
-    filter: drop-shadow(0px 0px 5px rgb(255, 206, 73));
+    filter: drop-shadow(0px 0px 5px #fd4c55);
 
 }
 .Flight_line{
     stroke:#ff79bc;
     stroke-width: 0.9px;
-    filter: drop-shadow(3px 5px 2px rgb(90, 0, 83));
+    filter: drop-shadow(3px 5px 2px #ff79bc);
 
 }
 .Bus_line{
-    stroke:#7c9bff;
+    stroke:#e13661;
     stroke-width: 0.9px;
-    filter: drop-shadow(3px 5px 2px rgb(160, 190, 255));
+    filter: drop-shadow(3px 5px 2px #e13661);
 
 }
 .Taxi_line{
-    stroke:#379fee;
+    stroke:#c1246b;
     stroke-width: 0.9px;
-    filter: drop-shadow(3px 5px 2px rgba(0, 47, 255, 0.4));
+    filter: drop-shadow(3px 5px 2px #c1246b);
 
 }
 .Other_line{
-    stroke:pink;
+    stroke:#a11477;
     stroke-width: 0.9px;
-    filter: drop-shadow(3px 5px 2px rgba(255, 255, 255, 0.4));
+    filter: drop-shadow(3px 5px 2px #a11477);
 
 }
 
@@ -150,32 +148,6 @@ img.huechange{
         font-size:18px;
         }
         
-        .main-menu .nav-text {
-        position:relative;
-        display:table-cell;
-        vertical-align:middle;
-        width:190px;
-          font-family: 'Titillium Web', sans-serif;
-        }
-        
-        .main-menu>ul.logout {
-        position:absolute;
-        left:0;
-        bottom:0;
-        }
-        
-        .no-touch .scrollable.hover {
-        overflow-y:hidden;
-        }
-        
-        .no-touch .scrollable.hover:hover {
-        overflow-y:auto;
-        overflow:visible;
-        }
-        
-        a:hover,a:focus {
-        text-decoration:none;
-        }
         
         nav {
         -webkit-user-select:none;
