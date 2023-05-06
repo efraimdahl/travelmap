@@ -18,6 +18,7 @@ var Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/a
 let prev = null
 let travelDistances = {"Flight":0,"Train":0,"Bus":0,"Taxi":0,"Bike":0,"Other":0,"Total":0}
 
+//This function displays the metrics and adds conditional styling.
 function display_distance(){
     let total = document.getElementById("ti_total")
     let bike = document.getElementById("ti_bike")
@@ -54,22 +55,14 @@ function display_distance(){
             }
         })
     }
-    /*
-    bike.addEventListener("mousedown",()=>{
-        console.log("Clicked Bike")
-        bike.classList.toggle("clickedItem")
-        
-    })*/
     
 }
 
-function getColor(d) {
-    return '#FFEDA0';
-}
+//This function displays the metrics and adds conditional styling.
 
 function style(feature) {
     return {
-        fillColor: getColor(feature.properties.name),
+        fillColor: '#FFEDA0',
         weight: 0.1,
         opacity: 1,
         color: 'white',
