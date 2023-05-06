@@ -13,7 +13,7 @@ print(location.raw)
 
 '''
 
-#returns the path to a given direction as a list of locations
+#returns the path to a given direction as a list of coordinates
 def waypoint_calc(prev,row,resdf):
     if(prev==[] or row["Include"]=="No"):
         return 0
@@ -44,8 +44,6 @@ def waypoint_calc(prev,row,resdf):
         }
         
         reqstring = f'{pointA[0]},{pointA[1]};{pointB[0]},{pointB[1]}'
-        if(prev[3]!=0):
-            reqstring = f'{pointA[0]},{pointA[1]};{prev[3]};{pointB[0]},{pointB[1]}'    
         conn.request("GET", f"/FindDrivingRoute?stops={reqstring}", headers=headers)
 
         res = conn.getresponse()
@@ -72,7 +70,6 @@ def geocode_location(row):
     location_data = geolocator.geocode("Reckong Peo, India")
     latitude = location_data.latitude
     longitude = location_data.longitude 
-    print(latitude,longitude)
     return longitude,latitude
     
 
@@ -96,7 +93,7 @@ for index, row in df.iterrows():
     route=waypoint_calc(prev,row,resdf)
     routes.append(route)
     if(row["Include"]!="No"):
-        prev=[latitude,longitude,row["Method"],row["Via"]]
+        prev=[latitude,longitude,row["Method"]]
     
 
     
