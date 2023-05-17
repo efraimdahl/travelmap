@@ -32,11 +32,10 @@ def waypoint_calc(prev,row,resdf):
     else:
         pointA=(prev[1],prev[0])
         pointB=(row['Longitude'],row['Latitude'])
-        print("Calculating route:", pointA,pointB,row["Name"],row["City"])
+        print("Calculating route: from", pointA,prev[3],prev[4]+ " to ",pointB,row["Name"],row["City"])
         host = ak.X_RAPID_API_HOST
         key = ak.X_RAPID_API_KEY
         conn = http.client.HTTPSConnection(host)
-        
         
         headers = {
             'X-RapidAPI-Key': key,
@@ -67,7 +66,7 @@ def geocode_location(row):
     geolocator = Nominatim(user_agent="TravelMaps")
     location = f'{row["City"]}, {row["Country"]}'
     print("Geolocating "+ location)
-    location_data = geolocator.geocode("Reckong Peo, India")
+    location_data = geolocator.geocode(location)
     latitude = location_data.latitude
     longitude = location_data.longitude 
     return longitude,latitude
@@ -93,7 +92,7 @@ for index, row in df.iterrows():
     route=waypoint_calc(prev,row,resdf)
     routes.append(route)
     if(row["Include"]!="No"):
-        prev=[latitude,longitude,row["Method"]]
+        prev=[row["Latitude"],row["Longitude"],row["Method"],row["Name"],row["City"]]
     
 
     
